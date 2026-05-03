@@ -1,0 +1,82 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  background: #FFFFFF;
+  box-shadow: 0 2px 16px rgba(26, 127, 212, 0.13);
+  border-bottom: 2px solid #C8DCF0;
+}
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  height: 58px;
+  width: auto;
+}
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #0D1B2A;
+  font-family: 'Nunito Sans', sans-serif;
+  white-space: nowrap;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.phone {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1A7FD4;
+  text-decoration: none;
+  font-family: 'Nunito Sans', sans-serif;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.phone:hover { text-decoration: underline; }
+.bookBtn {
+  background: #1A7FD4;
+  color: #FFFFFF;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+.bookBtn:hover {
+  background: #135FA0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(26, 127, 212, 0.28);
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .inner { flex-direction: column; gap: 12px; padding: 14px 16px; text-align: center; }
+  .right { flex-direction: column; gap: 10px; width: 100%; }
+  .bookBtn { width: 100%; text-align: center; }
+  .logo { height: 42px; }
+  .logoText { font-size: 1.2rem; }
+  .phone { font-size: 1.05rem; }
+}

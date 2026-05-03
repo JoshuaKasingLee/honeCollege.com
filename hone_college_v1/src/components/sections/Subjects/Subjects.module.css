@@ -1,0 +1,111 @@
+.subjects .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subjects h2 {
+  font-size: 2.2rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: inherit;
+  margin-bottom: 1rem;
+}
+
+.subjects p {
+  color: inherit;
+  margin-bottom: 2.5rem;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: inherit;
+  font-family: var(--font-heading);
+}
+
+.section-dark .statNumber {
+  color: #FFFFFF;
+}
+
+.section-white .statNumber {
+  color: var(--color-accent);
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: inherit;
+  margin-top: 0.5rem;
+}
+
+.section-dark .statLabel {
+  color: #A8C4E0;
+}
+
+.section-white .statLabel {
+  color: var(--color-text-muted);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.pill {
+  background: #1A4A7A;
+  border: 2px solid #2B6CB0;
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  font-family: 'Nunito Sans', sans-serif;
+  cursor: default;
+  user-select: none;
+  display: inline-block;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  text-align: center;
+  background: #162D4A;
+  border-left: 4px solid #5BAAFF;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  margin-top: 0.5rem;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #24384F;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

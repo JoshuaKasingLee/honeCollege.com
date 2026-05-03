@@ -1,0 +1,9 @@
+export { Hero } from "./Hero";
+export { WhyUs } from "./WhyUs";
+export { Subjects } from "./Subjects";
+export { Pricing } from "./Pricing";
+export { Referral } from "./Referral";
+export { GettingStarted } from "./GettingStarted";
+export { SampleResources } from "./SampleResources";
+export { BookTrial } from "./BookTrial";
+export { FAQ } from "./FAQ";

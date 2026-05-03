@@ -1,18 +1,237 @@
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Lato:wght@400;700&display=swap');
 
-body {
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --color-bg: #F5F9FF;
+  --color-white: #FFFFFF;
+  --color-section-alt: #EBF4FF;
+  --color-surface-alt: #EBF4FF;
+  --color-divider: #C8DCF0;
+  --color-accent: #1A7FD4;
+  --color-accent-dark: #135FA0;
+  --color-accent-light: #E8F3FC;
+  --color-text: #0D1B2A;
+  --color-text-muted: #4A6380;
+  --color-success: #0E8A5F;
+  --color-border: #C8DCF0;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 2px 16px rgba(26, 127, 212, 0.10);
+  --shadow-card-hover: 0 6px 28px rgba(26, 127, 212, 0.18);
+  --font-heading: 'Nunito Sans', sans-serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  padding-top: 90px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; }
+h3 { font-size: 1.2rem; font-weight: 700; }
+p  { font-size: 1rem; line-height: 1.8; color: var(--color-text); }
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+button { font-family: var(--font-body); cursor: pointer; }
+
+/* Section layout */
+.section-white {
+  background-color: var(--color-white);
+  border-top: 2px solid var(--color-divider);
+  border-bottom: 2px solid var(--color-divider);
+  color: var(--color-text);
+}
+.section-white h2,
+.section-white h3,
+.section-white p,
+.section-white .section-heading,
+.section-white .section-subheading,
+.section-white .statNumber,
+.section-white .statLabel,
+.section-white .whyUs p,
+.section-white .subjects p,
+.section-white .pricing p,
+.section-white .pricing h2,
+.section-white .faq h2,
+.section-white .faq .questionRow h3,
+.section-white .faq .answer,
+.section-white .referral h2,
+.section-white .referral p,
+.section-white .sampleResources h2,
+.section-white .sampleResources p,
+.section-white .bookTrial h2,
+.section-white .bookTrial p,
+.section-white .gettingStarted h2,
+.section-white .gettingStarted p  {
+  color: var(--color-text);
+}
+.section-white .statNumber {
+  color: var(--color-accent);
+}
+.section-white .statLabel {
+  color: var(--color-text-muted);
+}
+.section-dark {
+  background-color: #0D2444;
+  border-top: 2px solid #1A4A7A;
+  border-bottom: 2px solid #1A4A7A;
+}
+.section-dark .section-heading {
+  color: #FFFFFF;
+}
+.section-dark .section-subheading {
+  color: #A8C4E0;
+}
+.section-dark p {
+  color: #C8DCF0;
+}
+.section-dark h2,
+.section-dark h3 {
+  color: #FFFFFF;
+}
+.section-dark strong {
+  color: #FFFFFF;
+}
+.section-dark a {
+  color: #5BAAFF;
+}
+.section-dark a:hover {
+  color: #FFFFFF;
+}
+.section-wrap {
+  padding: 88px 24px;
+}
+.section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* Shared heading styles */
+.section-heading {
+  font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+}
+.section-subheading {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 52px auto;
+  line-height: 1.8;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 127, 212, 0.3);
+  text-decoration: none;
+  color: #fff;
+}
+.btn-outline {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 13px 32px;
+  border-radius: 8px;
+  border: 2px solid var(--color-accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Cards */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+/* Image placeholder boxes */
+.img-placeholder {
+  width: 100%;
+  min-height: 280px;
+  background: var(--color-accent-light);
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.img-placeholder span.icon { font-size: 2.5rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .section-wrap { padding: 64px 20px; }
+  body { padding-top: 110px; }
+}
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+  .section-wrap { padding: 52px 16px; }
 }

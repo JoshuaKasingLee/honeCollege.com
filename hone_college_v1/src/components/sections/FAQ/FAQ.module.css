@@ -1,0 +1,52 @@
+.faq .container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq h2 {
+  font-size: 2.2rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.list {
+  /* No additional styles needed */
+}
+
+.item {
+  border-bottom: 1px solid #1A4A7A;
+  padding: 1.2rem 0;
+}
+
+.questionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.questionRow h3 {
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin: 0;
+  flex: 1;
+}
+
+.toggle {
+  color: #5BAAFF;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.answer {
+  color: #24384F;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-top: 0.75rem;
+  padding-right: 2rem;
+}

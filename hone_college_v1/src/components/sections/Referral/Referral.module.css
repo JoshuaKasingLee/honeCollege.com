@@ -1,0 +1,36 @@
+.referral .container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #162D4A;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border-left: 4px solid #5BAAFF;
+  text-align: left;
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #5BAAFF;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.referral h2 {
+  font-size: 1.6rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.referral p {
+  color: #A8C4E0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.referral p:last-child {
+  margin-bottom: 0;
+}
