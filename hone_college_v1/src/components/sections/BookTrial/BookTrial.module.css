@@ -64,23 +64,28 @@
 .submitButton {
   width: 100%;
   background: var(--color-accent);
-  color: white;
+  color: #FFFFFF;
   border: none;
   border-radius: 8px;
   padding: 14px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s ease;
+  font-family: var(--font-heading);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .submitButton:hover:not(:disabled) {
-  background: var(--color-accent-light);
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(26, 127, 212, 0.28);
 }
 
 .submitButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .success {
@@ -89,7 +94,7 @@
   color: var(--color-success);
   padding: 1rem;
   border-radius: 8px;
-  margin-top: 1rem;
+  margin: 0 0 1rem;
   text-align: center;
 }
 
@@ -99,6 +104,6 @@
   color: #ef4444;
   padding: 1rem;
   border-radius: 8px;
-  margin-top: 1rem;
+  margin: 0 0 1rem;
   text-align: center;
 }

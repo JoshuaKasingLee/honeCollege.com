@@ -1,55 +1,98 @@
 import React, { useState } from "react";
 import styles from "./BookTrial.module.css";
 
-export default function BookTrial() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    childName: "",
-    childYear: "",
-    subjects: "",
-    message: "",
-  });
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_ACCESS_KEY =
+  process.env.REACT_APP_WEB3FORMS_ACCESS_KEY || "ed5d4931-dd16-4130-ac26-9b0e83dc5647";
 
+const initialFormData = {
+  name: "",
+  email: "",
+  phone: "",
+  childName: "",
+  childYear: "",
+  subjects: "",
+  message: "",
+};
+
+type Web3FormsResponse = {
+  success?: boolean;
+  message?: string;
+};
+
+export default function BookTrial() {
+  const [formData, setFormData] = useState(initialFormData);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    setError("");
+    setSubmitted(false);
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
+    setSubmitted(false);
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.childName || !formData.childYear) {
       setError("Please fill in all required fields.");
       return;
     }
 
-    // Here you would typically send the form data to a backend
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setError("Web3Forms access key is missing. Add REACT_APP_WEB3FORMS_ACCESS_KEY to your environment.");
+      return;
+    }
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        childName: "",
-        childYear: "",
-        subjects: "",
-        message: "",
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: "New free trial booking from Hone College Learning",
+          from_name: "Hone College Learning Website",
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          "Child Name": formData.childName.trim(),
+          "Year Level": formData.childYear,
+          "Subjects of Interest": formData.subjects || "Not specified",
+          message: formData.message.trim() || "No additional message provided.",
+          botcheck: false,
+        }),
       });
-    }, 3000);
+
+      let result: Web3FormsResponse = {};
+      try {
+        result = await response.json();
+      } catch {
+        result = {};
+      }
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || "Could not send your request. Please try again.");
+      }
+
+      setSubmitted(true);
+      setFormData(initialFormData);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -57,9 +100,6 @@ export default function BookTrial() {
       <div className={styles.container}>
         <h2>Book Your Free Trial</h2>
         <p>Get started with a complimentary lesson. Fill out the form below and we'll be in touch.</p>
-
-        {submitted && <div className={styles.success}>Thank you! We'll contact you shortly to confirm your trial lesson.</div>}
-        {error && <div className={styles.error}>{error}</div>}
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.field}>
@@ -71,6 +111,7 @@ export default function BookTrial() {
               value={formData.name}
               onChange={handleChange}
               placeholder="John Doe"
+              required
             />
           </div>
 
@@ -83,6 +124,7 @@ export default function BookTrial() {
               value={formData.email}
               onChange={handleChange}
               placeholder="you@example.com"
+              required
             />
           </div>
 
@@ -107,6 +149,7 @@ export default function BookTrial() {
               value={formData.childName}
               onChange={handleChange}
               placeholder="Jane Doe"
+              required
             />
           </div>
 
@@ -117,6 +160,7 @@ export default function BookTrial() {
               name="childYear"
               value={formData.childYear}
               onChange={handleChange}
+              required
             >
               <option value="">Select Year Level</option>
               <option value="year-3">Year 3</option>
@@ -161,8 +205,11 @@ export default function BookTrial() {
             />
           </div>
 
-          <button type="submit" className={styles.submitButton}>
-            Book Your Free Trial
+          {submitted && <div className={styles.success} role="status">Thank you! We'll contact you shortly to confirm your trial lesson.</div>}
+          {error && <div className={styles.error} role="alert">{error}</div>}
+
+          <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Book Your Free Trial"}
           </button>
         </form>
       </div>

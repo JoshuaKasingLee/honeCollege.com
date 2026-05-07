@@ -113,6 +113,10 @@
   margin: 0;
 }
 
+.pricing .summary strong {
+  color: var(--color-text);
+}
+
 .cta {
   margin-top: 2rem;
 }
